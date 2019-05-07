@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "startindex": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "count": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 20
+        },
+        "orderby": {
+            "required": false,
+            "type": "string"
+        },
+        "orderascending": {
+            "required": false,
+            "type": "boolean",
+            "default": true
+        },
+        "filter": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

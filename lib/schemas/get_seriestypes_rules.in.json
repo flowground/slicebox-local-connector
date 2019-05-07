@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "seriestypeid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

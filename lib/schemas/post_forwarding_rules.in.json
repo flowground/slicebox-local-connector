@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "destination": {
+                    "properties": {
+                        "destinationId": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "destinationName": {
+                            "type": "string"
+                        },
+                        "destinationType": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "keepImages": {
+                    "type": "boolean"
+                },
+                "source": {
+                    "properties": {
+                        "sourceId": {
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "sourceName": {
+                            "type": "string"
+                        },
+                        "sourceType": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

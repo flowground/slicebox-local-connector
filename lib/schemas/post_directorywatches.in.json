@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

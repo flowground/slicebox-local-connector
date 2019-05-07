@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "items": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "type": "array"
+        }
+    }
+}

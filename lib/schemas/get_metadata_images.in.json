@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "startindex": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "count": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 20
+        },
+        "seriesid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

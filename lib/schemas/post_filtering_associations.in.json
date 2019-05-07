@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "sourceId": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "sourceType": {
+                    "type": "string"
+                },
+                "tagFilterId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,103 @@
+{
+    "type": "object",
+    "properties": {
+        "token": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "transactionImage": {
+                    "properties": {
+                        "image": {
+                            "properties": {
+                                "id": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "imageId": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "outgoingTransactionId": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "sent": {
+                                    "type": "boolean"
+                                },
+                                "sequenceNumber": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "transaction": {
+                            "properties": {
+                                "boxId": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "boxName": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "profile": {
+                                    "properties": {
+                                        "options": {
+                                            "items": {
+                                                "properties": {
+                                                    "description": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "rank": {
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    },
+                                                    "title": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "sentImageCount": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "status": {
+                                    "type": "string"
+                                },
+                                "totalImageCount": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "updated": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

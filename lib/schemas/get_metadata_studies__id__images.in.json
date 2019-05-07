@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "sources": {
+            "required": false,
+            "type": "string"
+        },
+        "seriestypes": {
+            "required": false,
+            "type": "string"
+        },
+        "seriestags": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

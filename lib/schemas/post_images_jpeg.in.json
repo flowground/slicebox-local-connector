@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "studyid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "description": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {}
+    }
+}

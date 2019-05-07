@@ -1,0 +1,2436 @@
+{
+    "title": "Slicebox",
+    "description": "Slicebox - safe sharing of medical images",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/slicebox.local/2.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://slicebox.local/api",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "post_anonymization_anonymize": {
+            "main": "./lib/actions/post_anonymization_anonymize.js",
+            "title": "anonymize the images corresponding to the supplied list of image IDs (each paired with a list of DICOM tag translation). This route corresponds to repeated use of the route /images/{id}/anonymize.",
+            "description": "anonymize the images corresponding to the supplied list of image IDs (each paired with a list of DICOM tag translation). This route corresponds to repeated use of the route /images/{id}/anonymize.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_anonymization_anonymize.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_anonymization_keys": {
+            "main": "./lib/actions/get_anonymization_keys.js",
+            "title": "get a list of anonymization keys, each specifying how vital DICOM attributes have been anonymized for a particular image",
+            "description": "get a list of anonymization keys, each specifying how vital DICOM attributes have been anonymized for a particular image",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_anonymization_keys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_anonymization_keys_export_csv": {
+            "main": "./lib/actions/get_anonymization_keys_export_csv.js",
+            "title": "export all anonymization keys as a csv file",
+            "description": "export all anonymization keys as a csv file",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_anonymization_keys_export_csv.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_anonymization_keys_query": {
+            "main": "./lib/actions/post_anonymization_keys_query.js",
+            "title": "submit a query for anonymization keys",
+            "description": "submit a query for anonymization keys",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_anonymization_keys_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_anonymization_keys__id_": {
+            "main": "./lib/actions/delete_anonymization_keys__id_.js",
+            "title": "delete an anonymization key that is no longer of interest",
+            "description": "delete an anonymization key that is no longer of interest",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_anonymization_keys__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_anonymization_keys__id_": {
+            "main": "./lib/actions/get_anonymization_keys__id_.js",
+            "title": "get the anonymization key with the supplied ID",
+            "description": "get the anonymization key with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_anonymization_keys__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_anonymization_keys__id__keyvalues": {
+            "main": "./lib/actions/get_anonymization_keys__id__keyvalues.js",
+            "title": "get pointers to the images corresponding to the anonymization key with the supplied ID",
+            "description": "get pointers to the images corresponding to the anonymization key with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_anonymization_keys__id__keyvalues.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_anonymization_options": {
+            "main": "./lib/actions/get_anonymization_options.js",
+            "title": "list all supported anonymization options defining an anonymization profile",
+            "description": "list all supported anonymization options defining an anonymization profile",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_anonymization_options.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_boxes": {
+            "main": "./lib/actions/get_boxes.js",
+            "title": "get a list of box connections",
+            "description": "get a list of box connections",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_boxes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_boxes_connect": {
+            "main": "./lib/actions/post_boxes_connect.js",
+            "title": "connect to another box using a received URL. Used to connect to a public box.",
+            "description": "connect to another box using a received URL. Used to connect to a public box.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_boxes_connect.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_boxes_createconnection": {
+            "main": "./lib/actions/post_boxes_createconnection.js",
+            "title": "create a new box connection where the supplied entity holds the remote box name. Used by publicly available boxes.",
+            "description": "create a new box connection where the supplied entity holds the remote box name. Used by publicly available boxes.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_boxes_createconnection.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_boxes_incoming": {
+            "main": "./lib/actions/get_boxes_incoming.js",
+            "title": "get incoming transactions (finished, currently receiving, waiting or failed)",
+            "description": "get incoming transactions (finished, currently receiving, waiting or failed)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_boxes_incoming.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_boxes_incoming__id_": {
+            "main": "./lib/actions/delete_boxes_incoming__id_.js",
+            "title": "delete an incoming transaction. If a currently active transaction is deleted, a new transaction with the remainder of the images is created when receiving the next incoming image.",
+            "description": "delete an incoming transaction. If a currently active transaction is deleted, a new transaction with the remainder of the images is created when receiving the next incoming image.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_boxes_incoming__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_boxes_incoming__id__images": {
+            "main": "./lib/actions/get_boxes_incoming__id__images.js",
+            "title": "get the received images corresponding to the incoming transaction with the supplied ID",
+            "description": "get the received images corresponding to the incoming transaction with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_boxes_incoming__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_boxes_outgoing": {
+            "main": "./lib/actions/get_boxes_outgoing.js",
+            "title": "get outgoing transactions (finished, currently sending, waiting or failed)",
+            "description": "get outgoing transactions (finished, currently sending, waiting or failed)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_boxes_outgoing.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_boxes_outgoing__id_": {
+            "main": "./lib/actions/delete_boxes_outgoing__id_.js",
+            "title": "delete an outgoing transaction. This will stop ongoing transactions.",
+            "description": "delete an outgoing transaction. This will stop ongoing transactions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_boxes_outgoing__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_boxes_outgoing__id__images": {
+            "main": "./lib/actions/get_boxes_outgoing__id__images.js",
+            "title": "get the sent images corresponding to the outgoing transaction with the supplied ID",
+            "description": "get the sent images corresponding to the outgoing transaction with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_boxes_outgoing__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_boxes__id_": {
+            "main": "./lib/actions/delete_boxes__id_.js",
+            "title": "Delete the remote box with the supplied ID",
+            "description": "Delete the remote box with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_boxes__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_boxes__id__send": {
+            "main": "./lib/actions/post_boxes__id__send.js",
+            "title": "send images corresponding to the supplied image ids to the remote box with the supplied ID",
+            "description": "send images corresponding to the supplied image ids to the remote box with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_boxes__id__send.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_destinations": {
+            "main": "./lib/actions/get_destinations.js",
+            "title": "Returns a list of currently available destinations. Possible destinations are box - sending data to a remote box, and scu - sending data a receiving SCP.",
+            "description": "Returns a list of currently available destinations. Possible destinations are box - sending data to a remote box, and scu - sending data a receiving SCP.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_destinations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_directorywatches": {
+            "main": "./lib/actions/get_directorywatches.js",
+            "title": "get a list of watch directories. Each watch directory and its sub-directories are watched for incoming DICOM files, which are read and imported into slicebox.",
+            "description": "get a list of watch directories. Each watch directory and its sub-directories are watched for incoming DICOM files, which are read and imported into slicebox.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_directorywatches.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_directorywatches": {
+            "main": "./lib/actions/post_directorywatches.js",
+            "title": "add a new directory to watch for incoming DICOM files",
+            "description": "add a new directory to watch for incoming DICOM files",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_directorywatches.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_directorywatches__id_": {
+            "main": "./lib/actions/delete_directorywatches__id_.js",
+            "title": "stop watching and remove the directory corresponding to the supplied ID",
+            "description": "stop watching and remove the directory corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_directorywatches__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_filtering_associations": {
+            "main": "./lib/actions/get_filtering_associations.js",
+            "title": "Get a list of source to filter associations.",
+            "description": "Get a list of source to filter associations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_filtering_associations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_filtering_associations": {
+            "main": "./lib/actions/post_filtering_associations.js",
+            "title": "Inserts or updates a source <-> filter associations. If the specified Source already  has an association this is updated, otherwise a new is inserted.",
+            "description": "Inserts or updates a source <-> filter associations. If the specified Source already  has an association this is updated, otherwise a new is inserted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_filtering_associations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_filtering_associations__id_": {
+            "main": "./lib/actions/delete_filtering_associations__id_.js",
+            "title": "remove the source <-> filter association corresponding to the supplied ID",
+            "description": "remove the source <-> filter association corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_filtering_associations__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_filtering_filters": {
+            "main": "./lib/actions/get_filtering_filters.js",
+            "title": "List defined filters",
+            "description": "List defined filters",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_filtering_filters.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_filtering_filters": {
+            "main": "./lib/actions/post_filtering_filters.js",
+            "title": "Inserts or updates a filter. If a filter with same name as supplied filter exists this filter is updated, otherwise a new filter is inserted.",
+            "description": "Inserts or updates a filter. If a filter with same name as supplied filter exists this filter is updated, otherwise a new filter is inserted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_filtering_filters.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_filtering_filters__id_": {
+            "main": "./lib/actions/delete_filtering_filters__id_.js",
+            "title": "remove the filter corresponding to the supplied ID",
+            "description": "remove the filter corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_filtering_filters__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_filtering_filters__id__tagpaths": {
+            "main": "./lib/actions/get_filtering_filters__id__tagpaths.js",
+            "title": "List tagpaths for the selected filter",
+            "description": "List tagpaths for the selected filter",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_filtering_filters__id__tagpaths.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_filtering_filters__id__tagpaths": {
+            "main": "./lib/actions/post_filtering_filters__id__tagpaths.js",
+            "title": "add a tagpath to a filter",
+            "description": "add a tagpath to a filter",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_filtering_filters__id__tagpaths.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_filtering_filters__id__tagpaths__tagpathid_": {
+            "main": "./lib/actions/delete_filtering_filters__id__tagpaths__tagpathid_.js",
+            "title": "remove the tagpath corresponding to the supplied ID",
+            "description": "remove the tagpath corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_filtering_filters__id__tagpaths__tagpathid_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_forwarding_rule__id_": {
+            "main": "./lib/actions/delete_forwarding_rule__id_.js",
+            "title": "remove the forwarding rule corresponding to the supplied ID",
+            "description": "remove the forwarding rule corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_forwarding_rule__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_forwarding_rules": {
+            "main": "./lib/actions/get_forwarding_rules.js",
+            "title": "get a list of all forwarding rules. A forwarding rule specifies the automatic forwarding of images from a source (SCP, BOX, etc.) to a destimation (BOX, SCU, etc.)",
+            "description": "get a list of all forwarding rules. A forwarding rule specifies the automatic forwarding of images from a source (SCP, BOX, etc.) to a destimation (BOX, SCU, etc.)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_forwarding_rules.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_forwarding_rules": {
+            "main": "./lib/actions/post_forwarding_rules.js",
+            "title": "add a new forwarding rule",
+            "description": "add a new forwarding rule",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_forwarding_rules.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_images": {
+            "main": "./lib/actions/post_images.js",
+            "title": "add a DICOM dataset to slicebox",
+            "description": "add a DICOM dataset to slicebox",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_images_delete": {
+            "main": "./lib/actions/post_images_delete.js",
+            "title": "bulk delete a sequence of images according to the supplied image IDs. This is the same as a sequence of DELETE requests to /images/{id}",
+            "description": "bulk delete a sequence of images according to the supplied image IDs. This is the same as a sequence of DELETE requests to /images/{id}",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_images_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_images_export": {
+            "main": "./lib/actions/get_images_export.js",
+            "title": "download the export set with the supplied export set ID as a zip archive",
+            "description": "download the export set with the supplied export set ID as a zip archive",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_images_export.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_images_export": {
+            "main": "./lib/actions/post_images_export.js",
+            "title": "create an export set, a group of image IDs of images to export. The export set will contain the selected images. The export set is available for download 12 hours before it is automatically deleted.",
+            "description": "create an export set, a group of image IDs of images to export. The export set will contain the selected images. The export set is available for download 12 hours before it is automatically deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_images_export.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_images_jpeg": {
+            "main": "./lib/actions/post_images_jpeg.js",
+            "title": "add a JPEG image to slicebox. The image data will be wrapped in a DICOM file and added as a new series belonging to the study with the supplied ID",
+            "description": "add a JPEG image to slicebox. The image data will be wrapped in a DICOM file and added as a new series belonging to the study with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_images_jpeg.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_images__id_": {
+            "main": "./lib/actions/delete_images__id_.js",
+            "title": "Delete the image with the supplied ID",
+            "description": "Delete the image with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_images__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_images__id_": {
+            "main": "./lib/actions/get_images__id_.js",
+            "title": "fetch dataset corresponding to the supplied image ID",
+            "description": "fetch dataset corresponding to the supplied image ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_images__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_images__id__anonymize": {
+            "main": "./lib/actions/put_images__id__anonymize.js",
+            "title": "delete the selected image and replace it with an anonymized version",
+            "description": "delete the selected image and replace it with an anonymized version",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_images__id__anonymize.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_images__id__anonymized": {
+            "main": "./lib/actions/post_images__id__anonymized.js",
+            "title": "get an anonymized version of the image with the supplied ID",
+            "description": "get an anonymized version of the image with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_images__id__anonymized.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_images__id__attributes": {
+            "main": "./lib/actions/get_images__id__attributes.js",
+            "title": "list all DICOM attributes of the dataset corresponding to the supplied image ID",
+            "description": "list all DICOM attributes of the dataset corresponding to the supplied image ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_images__id__attributes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_images__id__imageinformation": {
+            "main": "./lib/actions/get_images__id__imageinformation.js",
+            "title": "get basic information about the pixel data of an image",
+            "description": "get basic information about the pixel data of an image",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_images__id__imageinformation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_images__id__modify": {
+            "main": "./lib/actions/put_images__id__modify.js",
+            "title": "modify and/or insert image attributes according to the input tagpath-value mappings",
+            "description": "modify and/or insert image attributes according to the input tagpath-value mappings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_images__id__modify.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_images__id__png": {
+            "main": "./lib/actions/get_images__id__png.js",
+            "title": "get a PNG image representation of the image corresponding to the supplied ID",
+            "description": "get a PNG image representation of the image corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_images__id__png.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_import_sessions": {
+            "main": "./lib/actions/get_import_sessions.js",
+            "title": "Returns a list of available import sessions.",
+            "description": "Returns a list of available import sessions.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_import_sessions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_import_sessions": {
+            "main": "./lib/actions/post_import_sessions.js",
+            "title": "create a new import sessions",
+            "description": "create a new import sessions",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_import_sessions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_import_sessions__id_": {
+            "main": "./lib/actions/delete_import_sessions__id_.js",
+            "title": "deletes the import session with the supplied ID",
+            "description": "deletes the import session with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_import_sessions__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_import_sessions__id_": {
+            "main": "./lib/actions/get_import_sessions__id_.js",
+            "title": "Returns the import sessions with the supplied ID",
+            "description": "Returns the import sessions with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_import_sessions__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_import_sessions__id__images": {
+            "main": "./lib/actions/get_import_sessions__id__images.js",
+            "title": "get the imported images corresponding to the import session with the supplied ID",
+            "description": "get the imported images corresponding to the import session with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_import_sessions__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_import_sessions__id__images": {
+            "main": "./lib/actions/post_import_sessions__id__images.js",
+            "title": "add a DICOM dataset to the import session with the supplied ID",
+            "description": "add a DICOM dataset to the import session with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_import_sessions__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_log": {
+            "main": "./lib/actions/delete_log.js",
+            "title": "delete all log messages",
+            "description": "delete all log messages",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_log.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_log": {
+            "main": "./lib/actions/get_log.js",
+            "title": "get a list of slicebox log messages",
+            "description": "get a list of slicebox log messages",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_log.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_log__id_": {
+            "main": "./lib/actions/delete_log__id_.js",
+            "title": "Delete the log entry with the supplied ID",
+            "description": "Delete the log entry with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_log__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_flatseries": {
+            "main": "./lib/actions/get_metadata_flatseries.js",
+            "title": "Returns a list of flattened metadata on the patient, study and series levels",
+            "description": "Returns a list of flattened metadata on the patient, study and series levels",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_flatseries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_flatseries_query": {
+            "main": "./lib/actions/post_metadata_flatseries_query.js",
+            "title": "submit a query for flat series",
+            "description": "submit a query for flat series",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_flatseries_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_flatseries__id_": {
+            "main": "./lib/actions/get_metadata_flatseries__id_.js",
+            "title": "Return the flat series with the supplied ID",
+            "description": "Return the flat series with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_flatseries__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_images": {
+            "main": "./lib/actions/get_metadata_images.js",
+            "title": "Returns a list of metadata on the image level of the DICOM hierarchy",
+            "description": "Returns a list of metadata on the image level of the DICOM hierarchy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_images_query": {
+            "main": "./lib/actions/post_metadata_images_query.js",
+            "title": "submit a query for images",
+            "description": "submit a query for images",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_images_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_images__id_": {
+            "main": "./lib/actions/get_metadata_images__id_.js",
+            "title": "Return the image with the supplied ID",
+            "description": "Return the image with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_images__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_patients": {
+            "main": "./lib/actions/get_metadata_patients.js",
+            "title": "Returns a list of metadata on the patient level of the DICOM hierarchy",
+            "description": "Returns a list of metadata on the patient level of the DICOM hierarchy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_patients.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_patients_query": {
+            "main": "./lib/actions/post_metadata_patients_query.js",
+            "title": "submit a query for patients",
+            "description": "submit a query for patients",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_patients_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_patients__id_": {
+            "main": "./lib/actions/get_metadata_patients__id_.js",
+            "title": "Return the patient with the supplied ID",
+            "description": "Return the patient with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_patients__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_patients__id__images": {
+            "main": "./lib/actions/get_metadata_patients__id__images.js",
+            "title": "Returns all images for the patient with the supplied patient ID",
+            "description": "Returns all images for the patient with the supplied patient ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_patients__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_series": {
+            "main": "./lib/actions/get_metadata_series.js",
+            "title": "Returns a list of metadata on the series level of the DICOM hierarchy",
+            "description": "Returns a list of metadata on the series level of the DICOM hierarchy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_series.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_series_query": {
+            "main": "./lib/actions/post_metadata_series_query.js",
+            "title": "submit a query for series",
+            "description": "submit a query for series",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_series_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_series__id_": {
+            "main": "./lib/actions/get_metadata_series__id_.js",
+            "title": "Return the series with the supplied ID",
+            "description": "Return the series with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_series__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_series__id__seriestags": {
+            "main": "./lib/actions/get_metadata_series__id__seriestags.js",
+            "title": "get the list of series tags for the series with the supplied ID.",
+            "description": "get the list of series tags for the series with the supplied ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_series__id__seriestags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_series__id__seriestags": {
+            "main": "./lib/actions/post_metadata_series__id__seriestags.js",
+            "title": "add a series tag to the series with the supplied ID",
+            "description": "add a series tag to the series with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_series__id__seriestags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_metadata_series__id__seriestypes": {
+            "main": "./lib/actions/delete_metadata_series__id__seriestypes.js",
+            "title": "Delete all series types for the series with the supplied ID",
+            "description": "Delete all series types for the series with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_metadata_series__id__seriestypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_series__id__seriestypes": {
+            "main": "./lib/actions/get_metadata_series__id__seriestypes.js",
+            "title": "get the list of series types for the series with the supplied ID.",
+            "description": "get the list of series types for the series with the supplied ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_series__id__seriestypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_series__id__source": {
+            "main": "./lib/actions/get_metadata_series__id__source.js",
+            "title": "Return the source of the series with the supplied ID",
+            "description": "Return the source of the series with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_series__id__source.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_metadata_series__seriesId__seriestags__seriesTagId_": {
+            "main": "./lib/actions/delete_metadata_series__seriesId__seriestags__seriesTagId_.js",
+            "title": "Delete the series tag with the supplied series tag ID from the series with the supplied series ID",
+            "description": "Delete the series tag with the supplied series tag ID from the series with the supplied series ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_metadata_series__seriesId__seriestags__seriesTagId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_metadata_series__seriesId__seriestypes__seriesTypeId_": {
+            "main": "./lib/actions/delete_metadata_series__seriesId__seriestypes__seriesTypeId_.js",
+            "title": "Delete the series type with the supplied series type ID from the series with the supplied series ID",
+            "description": "Delete the series type with the supplied series type ID from the series with the supplied series ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_metadata_series__seriesId__seriestypes__seriesTypeId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_metadata_series__seriesId__seriestypes__seriesTypeId_": {
+            "main": "./lib/actions/put_metadata_series__seriesId__seriestypes__seriesTypeId_.js",
+            "title": "Add the series type with the supplied series type ID to the series with the supplied series ID",
+            "description": "Add the series type with the supplied series type ID to the series with the supplied series ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_metadata_series__seriesId__seriestypes__seriesTypeId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_seriestags": {
+            "main": "./lib/actions/get_metadata_seriestags.js",
+            "title": "Returns a list of series tags currently currently in use.",
+            "description": "Returns a list of series tags currently currently in use.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_seriestags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_studies": {
+            "main": "./lib/actions/get_metadata_studies.js",
+            "title": "Returns a list of metadata on the study level of the DICOM hierarchy",
+            "description": "Returns a list of metadata on the study level of the DICOM hierarchy",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_studies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_metadata_studies_query": {
+            "main": "./lib/actions/post_metadata_studies_query.js",
+            "title": "submit a query for studies",
+            "description": "submit a query for studies",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_metadata_studies_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_studies__id_": {
+            "main": "./lib/actions/get_metadata_studies__id_.js",
+            "title": "Return the study with the supplied ID",
+            "description": "Return the study with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_studies__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_metadata_studies__id__images": {
+            "main": "./lib/actions/get_metadata_studies__id__images.js",
+            "title": "Returns all images for the study with the supplied study ID",
+            "description": "Returns all images for the study with the supplied study ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_metadata_studies__id__images.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_scps": {
+            "main": "./lib/actions/get_scps.js",
+            "title": "get a list of DICOM SCPs. Each SCP is a server for receiving DICOM images from e.g. a PACS system.",
+            "description": "get a list of DICOM SCPs. Each SCP is a server for receiving DICOM images from e.g. a PACS system.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_scps.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_scps": {
+            "main": "./lib/actions/post_scps.js",
+            "title": "add a new SCP for receiving DICOM images",
+            "description": "add a new SCP for receiving DICOM images",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_scps.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_scps__id_": {
+            "main": "./lib/actions/delete_scps__id_.js",
+            "title": "shut down and remove the SCP corresponding to the supplied ID",
+            "description": "shut down and remove the SCP corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_scps__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_scus": {
+            "main": "./lib/actions/get_scus.js",
+            "title": "get a list of DICOM SCUs. Each SCU is a client for sending DICOM images to an SCP, e.g. a PACS system.",
+            "description": "get a list of DICOM SCUs. Each SCU is a client for sending DICOM images to an SCP, e.g. a PACS system.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_scus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_scus": {
+            "main": "./lib/actions/post_scus.js",
+            "title": "add a new SCU for sending DICOM images",
+            "description": "add a new SCU for sending DICOM images",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_scus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_scus__id_": {
+            "main": "./lib/actions/delete_scus__id_.js",
+            "title": "remove the SCU corresponding to the supplied ID",
+            "description": "remove the SCU corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_scus__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_scus__id__send": {
+            "main": "./lib/actions/post_scus__id__send.js",
+            "title": "send the images with the supplied image IDs to a DICOM SCP using the the SCU with the supplied scu ID",
+            "description": "send the images with the supplied image IDs to a DICOM SCP using the the SCU with the supplied scu ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_scus__id__send.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_seriestypes": {
+            "main": "./lib/actions/get_seriestypes.js",
+            "title": "get a list of all added series types. By filtering search results for certain series types, it is easier for applications to ensure that they read images of applicable types.",
+            "description": "get a list of all added series types. By filtering search results for certain series types, it is easier for applications to ensure that they read images of applicable types.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_seriestypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_seriestypes": {
+            "main": "./lib/actions/post_seriestypes.js",
+            "title": "add a new series type",
+            "description": "add a new series type",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_seriestypes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_seriestypes_rules": {
+            "main": "./lib/actions/get_seriestypes_rules.js",
+            "title": "get a list of rules for assigning series types to series. A rule connects to a series of attributes with values and a resulting series type. If a series has the required values of the listed attributes, it is assigned to the series type of the rule.",
+            "description": "get a list of rules for assigning series types to series. A rule connects to a series of attributes with values and a resulting series type. If a series has the required values of the listed attributes, it is assigned to the series type of the rule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_seriestypes_rules.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_seriestypes_rules": {
+            "main": "./lib/actions/post_seriestypes_rules.js",
+            "title": "add a new series type rule",
+            "description": "add a new series type rule",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_seriestypes_rules.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_seriestypes_rules_updatestatus": {
+            "main": "./lib/actions/get_seriestypes_rules_updatestatus.js",
+            "title": "get the status of the internal process of updating series types for series following a change of series types, rules or attributes.",
+            "description": "get the status of the internal process of updating series types for series following a change of series types, rules or attributes.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_seriestypes_rules_updatestatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_seriestypes_rules__id_": {
+            "main": "./lib/actions/delete_seriestypes_rules__id_.js",
+            "title": "remove the series type rule corresponding to the supplied ID",
+            "description": "remove the series type rule corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_seriestypes_rules__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_seriestypes_rules__id__attributes": {
+            "main": "./lib/actions/get_seriestypes_rules__id__attributes.js",
+            "title": "get the list of attributes for the series type rule with the supplied ID.",
+            "description": "get the list of attributes for the series type rule with the supplied ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_seriestypes_rules__id__attributes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_seriestypes_rules__id__attributes": {
+            "main": "./lib/actions/post_seriestypes_rules__id__attributes.js",
+            "title": "add a new series type rule attribute",
+            "description": "add a new series type rule attribute",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_seriestypes_rules__id__attributes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_seriestypes_rules__ruleId__attributes__attributeId_": {
+            "main": "./lib/actions/delete_seriestypes_rules__ruleId__attributes__attributeId_.js",
+            "title": "remove the series type rule attribute corresponding to the supplied series type and attribute IDs",
+            "description": "remove the series type rule attribute corresponding to the supplied series type and attribute IDs",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_seriestypes_rules__ruleId__attributes__attributeId_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_seriestypes_series_query": {
+            "main": "./lib/actions/post_seriestypes_series_query.js",
+            "title": "submit a query for seriestypes for a list of series",
+            "description": "submit a query for seriestypes for a list of series",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_seriestypes_series_query.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_seriestypes__id_": {
+            "main": "./lib/actions/delete_seriestypes__id_.js",
+            "title": "remove the series type corresponding to the supplied ID",
+            "description": "remove the series type corresponding to the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_seriestypes__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_seriestypes__id_": {
+            "main": "./lib/actions/put_seriestypes__id_.js",
+            "title": "request an asynchronous update of all series, labelling appropriate series with the series type corresponding to the supplied ID.",
+            "description": "request an asynchronous update of all series, labelling appropriate series with the series type corresponding to the supplied ID.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_seriestypes__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_sources": {
+            "main": "./lib/actions/get_sources.js",
+            "title": "Returns a list of currently available data sources. Possible source types are user - data imported by an API call by a user, box - data received from a remote box, directory - data imported via a watched directory, import - data imported into slicebox using import sessions, or scp - data received from a PACS.",
+            "description": "Returns a list of currently available data sources. Possible source types are user - data imported by an API call by a user, box - data received from a remote box, directory - data imported via a watched directory, import - data imported into slicebox using import sessions, or scp - data received from a PACS.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_sources.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_system_health": {
+            "main": "./lib/actions/get_system_health.js",
+            "title": "No-op route for checking whether the service is alive or not",
+            "description": "No-op route for checking whether the service is alive or not",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_system_health.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_system_stop": {
+            "main": "./lib/actions/post_system_stop.js",
+            "title": "stop and shut down slicebox",
+            "description": "stop and shut down slicebox",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_system_stop.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_transactions__token__image": {
+            "main": "./lib/actions/post_transactions__token__image.js",
+            "title": "add an image (dataset) as part of a transaction. This method is used when sending images using the push method to a public slicebox.",
+            "description": "add an image (dataset) as part of a transaction. This method is used when sending images using the push method to a public slicebox.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/octet-stream": "application/octet-stream",
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_transactions__token__image.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_transactions__token__outgoing": {
+            "main": "./lib/actions/get_transactions__token__outgoing.js",
+            "title": "fetch an image from the connected box as part of a transaction. This method is used when sending images using the poll method from a public slicebox.",
+            "description": "fetch an image from the connected box as part of a transaction. This method is used when sending images using the poll method from a public slicebox.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_transactions__token__outgoing.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_transactions__token__outgoing_done": {
+            "main": "./lib/actions/post_transactions__token__outgoing_done.js",
+            "title": "signal that the supplied outgoing transaction and image was successfully received and can be marked as sent. This method is used when sending images using the poll method from a public slicebox.",
+            "description": "signal that the supplied outgoing transaction and image was successfully received and can be marked as sent. This method is used when sending images using the poll method from a public slicebox.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_transactions__token__outgoing_done.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_transactions__token__outgoing_failed": {
+            "main": "./lib/actions/post_transactions__token__outgoing_failed.js",
+            "title": "signal that the image corresponding to the supplied outgoing transaction and image could not be read or stored properly on the receiving side, and that the transaction should be marked as failed.",
+            "description": "signal that the image corresponding to the supplied outgoing transaction and image could not be read or stored properly on the receiving side, and that the transaction should be marked as failed.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_transactions__token__outgoing_failed.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_transactions__token__outgoing_poll": {
+            "main": "./lib/actions/get_transactions__token__outgoing_poll.js",
+            "title": "get next outgoing transaction and image (information on the next image that the connected box wishes to send to you), if any. This method is used when sending images using the poll method from a public slicebox.",
+            "description": "get next outgoing transaction and image (information on the next image that the connected box wishes to send to you), if any. This method is used when sending images using the poll method from a public slicebox.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_transactions__token__outgoing_poll.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_transactions__token__status": {
+            "main": "./lib/actions/get_transactions__token__status.js",
+            "title": "get the status of the remote incoming transaction with the supplied transaction ID",
+            "description": "get the status of the remote incoming transaction with the supplied transaction ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_transactions__token__status.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "put_transactions__token__status": {
+            "main": "./lib/actions/put_transactions__token__status.js",
+            "title": "update the status of the transaction with the supplied ID",
+            "description": "update the status of the transaction with the supplied ID",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/put_transactions__token__status.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_users": {
+            "main": "./lib/actions/get_users.js",
+            "title": "Returns all users of slicebox",
+            "description": "Returns all users of slicebox",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_users.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_users": {
+            "main": "./lib/actions/post_users.js",
+            "title": "Creates a new user. Dupicates are accepted but not added.",
+            "description": "Creates a new user. Dupicates are accepted but not added.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_users.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_users_current": {
+            "main": "./lib/actions/get_users_current.js",
+            "title": "obtain information on the currently logged in user as specified by the supplied session cookie, IP address and user agent.",
+            "description": "obtain information on the currently logged in user as specified by the supplied session cookie, IP address and user agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_users_current.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_users_login": {
+            "main": "./lib/actions/post_users_login.js",
+            "title": "Obtain a session cookie that can be used to authenticate future API calls from the present IP address and with the present user agent.",
+            "description": "Obtain a session cookie that can be used to authenticate future API calls from the present IP address and with the present user agent.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "application/octet-stream": "application/octet-stream",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_users_login.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "post_users_logout": {
+            "main": "./lib/actions/post_users_logout.js",
+            "title": "Logout the current user by responding with a delete cookie header removing the session cookie for this user.",
+            "description": "Logout the current user by responding with a delete cookie header removing the session cookie for this user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_users_logout.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "delete_users__id_": {
+            "main": "./lib/actions/delete_users__id_.js",
+            "title": "deletes a single user based on the ID supplied",
+            "description": "deletes a single user based on the ID supplied",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/delete_users__id_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

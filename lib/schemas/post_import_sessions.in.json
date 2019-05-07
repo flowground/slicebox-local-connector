@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "created": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "filesAdded": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "filesImported": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "filesRejected": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "lastUpdated": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "string"
+                },
+                "userId": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

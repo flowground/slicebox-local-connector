@@ -1,0 +1,85 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "count": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "filters": {
+                    "properties": {
+                        "seriesTagIds": {
+                            "items": {
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "type": "array"
+                        },
+                        "seriesTypeIds": {
+                            "items": {
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "type": "array"
+                        },
+                        "sourceRefs": {
+                            "items": {
+                                "properties": {
+                                    "sourceId": {
+                                        "format": "int64",
+                                        "type": "integer"
+                                    },
+                                    "sourceType": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                "order": {
+                    "properties": {
+                        "orderAscending": {
+                            "type": "boolean"
+                        },
+                        "orderBy": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "queryProperties": {
+                    "items": {
+                        "properties": {
+                            "operator": {
+                                "type": "string"
+                            },
+                            "propertyName": {
+                                "type": "string"
+                            },
+                            "propertyValue": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "startIndex": {
+                    "format": "int64",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "startIndex",
+                "count",
+                "queryProperties"
+            ],
+            "type": "object"
+        }
+    }
+}

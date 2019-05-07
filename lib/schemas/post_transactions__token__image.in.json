@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "token": {
+            "required": true,
+            "type": "string"
+        },
+        "transactionid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "sequencenumber": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "totalimagecount": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {}
+    }
+}

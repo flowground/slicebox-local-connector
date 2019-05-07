@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "token": {
+            "required": true,
+            "type": "string"
+        },
+        "transactionid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "imageid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

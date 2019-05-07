@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "startindex": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "count": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 20
+        },
+        "studyid": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "sources": {
+            "required": false,
+            "type": "string"
+        },
+        "seriestypes": {
+            "required": false,
+            "type": "string"
+        },
+        "seriestags": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "properties": {
+                "element": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "group": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "id": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "seriesTypeRuleId": {
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "seriesTypeRuleId",
+                "group",
+                "element",
+                "value"
+            ],
+            "type": "object"
+        }
+    }
+}

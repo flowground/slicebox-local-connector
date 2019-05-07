@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "items": {
+                "format": "int64",
+                "type": "integer"
+            },
+            "type": "array"
+        }
+    }
+}
